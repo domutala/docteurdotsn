@@ -9,8 +9,9 @@ export class SessionRepository extends BaseRepository<Session> {
     super(dataSource, Session);
   }
 
-  async _add() {
+  async _add(publicKey: string) {
     const session = new Session();
+    session.publicKey = publicKey;
 
     await session.save();
 

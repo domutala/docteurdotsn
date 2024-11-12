@@ -7,6 +7,9 @@ export class Session extends Base {
   @Column({ type: "boolean", default: false })
   closed: boolean;
 
+  @Column({ type: "text" })
+  publicKey: string;
+
   @ManyToOne(() => User, (user) => user.sessions)
   user: User;
 }

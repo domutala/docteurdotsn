@@ -11,7 +11,7 @@ export class SessionController {
   @Public()
   @Post("init")
   async init(@Body() body: any) {
-    return await this.service.init();
+    return await this.service.init(body);
   }
 
   @Public()

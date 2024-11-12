@@ -21,9 +21,9 @@ export class SessionService {
   @Inject() private userRepository: UserRepository;
   @Inject() private sessionRepository: SessionRepository;
 
-  async init() {
+  async init(params: { publicKey: string }) {
     if (!this.request.session) {
-      this.request.session = await this.repository._add();
+      this.request.session = await this.repository._add(params.publicKey);
     }
     return { token: this.request.session.id };
   }

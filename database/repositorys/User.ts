@@ -32,6 +32,9 @@ export class UserRepository extends BaseRepository<User> {
     if (params.id) {
       user = await this._findOne({ id: params.id });
       if (!user) throw new NotFoundException("user_not_found");
+    } else {
+      user.email = params.email;
+      user.doctor = params.doctor;
     }
 
     if (
@@ -46,11 +49,6 @@ export class UserRepository extends BaseRepository<User> {
       const pwd = forge.encrypter(password.password);
       user.password = { value: pwd };
     }
-
-    console.log(user.password);
-
-    user.email = params.email || params.email;
-    user.doctor = params.doctor || params.doctor;
 
     await user.save();
 

@@ -47,6 +47,7 @@ export class SessionRepository extends BaseRepository<Session> {
   async _find(params: { [x: string]: any } = {}) {
     const queryBuilder = this.createQueryBuilder("session");
     queryBuilder.leftJoinAndSelect("session.user", "user");
+    queryBuilder.leftJoinAndSelect("user.doctor", "doctor");
 
     if (params.id) {
       params.ids ||= [];

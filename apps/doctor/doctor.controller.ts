@@ -10,7 +10,12 @@ export class DoctorController {
 
   @Public()
   @Post("register")
-  async getUser(@Body() body: any) {
+  async register(@Body() body: any) {
     return await this.service.signup(body);
+  }
+
+  @Post("update")
+  async update(@Body() body: any) {
+    return await this.service.update(body);
   }
 }

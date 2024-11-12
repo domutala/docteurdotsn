@@ -4,8 +4,8 @@ import { Public } from "decorators/public";
 @Controller("/")
 export class AppController {
   @Public()
-  @Get()
+  @Get("/ping")
   main(): string {
-    return "tarico";
+    return "docteurdotsn";
   }
 }

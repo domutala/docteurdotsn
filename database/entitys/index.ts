@@ -1,7 +1,5 @@
-import { Input } from "./Input";
-import { Model } from "./Model";
-import { Order } from "./Order";
-import { Organization } from "./Organization";
-import { Plan } from "./Plan";
+import { Doctor } from "./Doctor";
+import { Session } from "./Session";
+import { User } from "./User";
 
-export default [Input, Model, Organization, Order, Plan];
+export default [User, Session, Doctor];

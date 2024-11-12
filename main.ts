@@ -3,11 +3,18 @@ import { AppModule } from "./apps/module";
 import { json } from "express";
 import { Logger } from "@nestjs/common";
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: { origin: "*" } });
-  const port = process.env.PORT || 3000;
+import utils from "utils/forge";
+import { sign } from "utils/jwt";
 
+async function bootstrap() {
+  utils.generate();
+
+  const app = await NestFactory.create(AppModule, { cors: { origin: "*" } });
+
+  app.setGlobalPrefix(process.env.ROUTE_PREFIX);
   app.use(json({ limit: "50mb" }));
+
+  const port = process.env.PORT || 3000;
   await app.listen(port);
 
   Logger.log(

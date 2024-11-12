@@ -404,3 +404,7 @@ plans.json
 prod.plans.json
 
 firebase-adminsdk.json
+
+!.devcontainer/.env
+
+secrets

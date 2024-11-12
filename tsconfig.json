@@ -16,6 +16,9 @@
       "./types"
     ],
     "paths": {
+      "utils/*": [
+        "utils/*"
+      ],
       "decorators/*": [
         "decorators/*"
       ],

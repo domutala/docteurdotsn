@@ -3,33 +3,28 @@ import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigDatabase } from "database";
 import { AppController } from "./controller";
-import { APP_GUARD } from "@nestjs/core";
-import { FirebaseAdminModule } from "./firebase/admin.module";
-import { FirebaseAuthService } from "./firebase/admin.service";
-import { FirebaseAuthGuard } from "./firebase/admin.guard";
-import { OrganizationModule } from "./modules/organization/organization.module";
-import { ModelModule } from "./modules/model/model.module";
-import { MemberModule } from "./modules/member/member.module";
-import { PaypalModule } from "./paypal/paypal.module";
-import { InputModule } from "./modules/input/input.module";
+import { APP_GUARD, APP_INTERCEPTOR } from "@nestjs/core";
+import { SessionModule } from "./session/session.module";
+import { DoctorModule } from "./doctor/doctor.module";
+import { GlobalInterceptor } from "interceptors/global";
+import { UserModule } from "./user/user.module";
+import { AuthGuard } from "./auth/auth.guard";
+import { AuthModule } from "./auth/auth.module";
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({ ...ConfigDatabase(), autoLoadEntities: true }),
 
-    FirebaseAdminModule,
-    PaypalModule,
-
-    OrganizationModule,
-    ModelModule,
-    MemberModule,
-    InputModule,
+    AuthModule,
+    SessionModule,
+    UserModule,
+    DoctorModule,
   ],
   controllers: [AppController],
   providers: [
-    FirebaseAuthService,
-    { provide: APP_GUARD, useClass: FirebaseAuthGuard },
+    { provide: APP_GUARD, useClass: AuthGuard },
+    { provide: APP_INTERCEPTOR, useClass: GlobalInterceptor },
   ],
 })
 export class AppModule {}

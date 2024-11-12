@@ -1,11 +1,5 @@
-import { InputRepository } from "./Input";
-import { ModelRepository } from "./Model";
-import { OrderRepository } from "./Order";
-import { OrganizationRepository } from "./Organization";
+import { DoctorRepository } from "./Doctor";
+import { SessionRepository } from "./Session";
+import { UserRepository } from "./User";
 
-export default [
-  OrganizationRepository,
-  ModelRepository,
-  OrderRepository,
-  InputRepository,
-];
+export default [SessionRepository, UserRepository, DoctorRepository];
